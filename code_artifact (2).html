@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسالة من القلب.. أحبكِ يا روحي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800;900&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-glow: rgba(244, 63, 94, 0.4);
+            --secondary-glow: rgba(168, 85, 247, 0.35);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #070209;
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Modern Glassmorphism Styling */
+        .glass-card {
+            background: rgba(20, 10, 26, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Dynamic Neon Aura Glows */
+        .halo-light-1 {
+            position: fixed;
+            top: -15%;
+            right: -15%;
+            width: 55vw;
+            height: 55vw;
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(80px);
+            z-index: 0;
+            animation: floatGlow 10s infinite alternate ease-in-out;
+        }
+
+        .halo-light-2 {
+            position: fixed;
+            bottom: -15%;
+            left: -15%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(90px);
+            z-index: 0;
+            animation: floatGlow 14s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 40px) scale(1.15); }
+        }
+
+        /* Typography & Glow Effects */
+        .neon-text-pink {
+            text-shadow: 0 0 20px rgba(244, 63, 94, 0.7), 0 0 40px rgba(244, 63, 94, 0.4);
+        }
+
+        .font-kufi { font-family: 'Reem Kufi', sans-serif; }
+        .font-serif-custom { font-family: 'Amiri', serif; }
+
+        /* 3D Interactive Envelope Container */
+        .envelope-box {
+            position: relative;
+            width: 310px;
+            height: 210px;
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(225, 29, 72, 0.5), 0 20px 40px rgba(0, 0, 0, 0.8);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @media (min-width: 640px) {
+            .envelope-box {
+                width: 440px;
+                height: 280px;
+            }
+        }
+
+        .envelope-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 155px solid #f43f5e;
+            border-right: 155px solid #f43f5e;
+            border-bottom: 115px solid transparent;
+            border-top: 105px solid #fb7185;
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, z-index 0.1s ease 0.4s;
+            z-index: 3;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        @media (min-width: 640px) {
+            .envelope-box::before {
+                border-left-width: 220px;
+                border-right-width: 220px;
+                border-bottom-width: 150px;
+                border-top-width: 140px;
+            }
+        }
+
+        .envelope-box.open::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 155px solid #be123c;
+            border-right: 155px solid #be123c;
+            border-bottom: 115px solid #9f1239;
+            border-top: 95px solid transparent;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 3;
+        }
+
+        @media (min-width: 640px) {
+            .envelope-pocket {
+                border-left-width: 220px;
+                border-right-width: 220px;
+                border-bottom-width: 160px;
+                border-top-width: 120px;
+            }
+        }
+
+        .envelope-seal {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #fff 0%, #ffe4e6 100%);
+            color: #be123c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 1.6rem;
+        }
+
+        .envelope-box.open .envelope-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.2);
+            pointer-events: none;
+        }
+
+        /* Typewriter Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.8s infinite;
+            color: #f43f5e;
+            margin-right: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        #btn-no {
+            transition: all 0.25s ease-out;
+        }
+
+        input[type=range] {
+            accent-color: #f43f5e;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen justify-between items-center relative p-4 md:p-8 select-none">
+
+    <div class="halo-light-1"></div>
+    <div class="halo-light-2"></div>
+
+    <!-- Floating Particles Canvas -->
+    <canvas id="canvas-particles" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Top Navigation / Header -->
+    <header class="w-full max-w-4xl flex justify-between items-center z-10 py-3">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-rose-400 border border-rose-500/30 shadow-lg">
+                <i class="fa-solid fa-heart animate-pulse"></i>
+            </div>
+            <div>
+                <span class="text-rose-200 font-bold font-kufi tracking-wide text-sm md:text-base block">رسالة حب حصرية</span>
+                <span class="text-xs text-rose-300/60 font-light">إلى روح قلبي 💖</span>
+            </div>
+        </div>
+
+        <button id="btn-playlist-modal" class="glass-pill hover:bg-rose-500/20 text-rose-200 px-4 py-2 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 border border-rose-500/30 flex items-center gap-2 active:scale-95 shadow-lg">
+            <i class="fa-solid fa-music text-pink-400"></i>
+            <span>تغيير الأغنية / اختيار</span>
+        </button>
+    </header>
+
+    <main class="w-full max-w-2xl my-auto z-10 flex flex-col items-center justify-center relative py-6">
+
+        <!-- Initial Cover Screen with 3D Envelope -->
+        <div id="envelope-wrapper" class="flex flex-col items-center justify-center cursor-pointer group">
+            <div class="mb-8 text-center space-y-2">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-rose-500/15 text-rose-300 border border-rose-500/30 inline-block animate-pulse">
+                    <i class="fa-solid fa-envelope-open-text ml-1.5"></i> وصلتْكِ رسالة خاصة
+                </span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white font-kufi">
+                    اضغطي على المظروف لفتحه 💌
+                </h2>
+            </div>
+
+            <div id="envelope" class="envelope-box group-hover:scale-105 transition-transform">
+                <div class="envelope-seal">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="envelope-pocket"></div>
+            </div>
+        </div>
+
+        <!-- Glassmorphism Card Screen (Revealed on Open) -->
+        <div id="letter-card" class="hidden w-full glass-card rounded-3xl p-6 md:p-10 text-center transform transition-all duration-700 opacity-0 scale-95 relative overflow-hidden border border-rose-500/20">
+            
+            <div class="absolute -top-12 -right-12 w-36 h-36 bg-rose-500/20 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -left-12 w-36 h-36 bg-purple-500/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-bold mb-6 font-kufi">
+                <i class="fa-solid fa-sparkles text-pink-400"></i> اعتذار صادق من القلب
+            </div>
+
+            <!-- Typewriter Heading -->
+            <div class="min-h-[110px] md:min-h-[130px] flex items-center justify-center my-2 py-4 px-3 bg-rose-950/30 rounded-2xl border border-rose-500/20 shadow-inner">
+                <h1 id="typewriter-text" class="text-2xl md:text-4xl font-black text-rose-200 font-kufi leading-snug neon-text-pink"></h1>
+            </div>
+
+            <!-- Apology Message -->
+            <p id="sub-message" class="text-rose-100/90 font-serif-custom text-lg md:text-xl leading-relaxed mt-6 mb-8 opacity-0 transition-opacity duration-1000">
+                "يعلم الله أنكِ لستِ مجرد شخص عادي في حياتي، بل أنتِ حياتي بأكملها. إن كان قد بدر مني ما يُضايق قلبكِ الرقيق، فأنا أعتذر لكِ بأسفٍ عميق وحبٍ خالص لا ينتهي..."
+            </p>
+
+            <div class="my-6 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex justify-around items-center text-center">
+                <div>
+                    <span class="block text-xl md:text-2xl font-bold text-rose-300 font-kufi">∞</span>
+                    <span class="text-xs text-rose-200/60">محبتكِ في قلبي</span>
+                </div>
+                <div class="h-8 w-px bg-white/10"></div>
+                <div>
+                    <span class="block text-xl md:text-2xl font-bold text-purple-300 font-kufi">100%</span>
+                    <span class="text-xs text-rose-200/60">صدق وإخلاص</span>
+                </div>
+            </div>
+
+            <!-- Action Forgiveness Buttons -->
+            <div id="action-buttons" class="mt-8 pt-6 border-t border-white/10 relative min-h-[120px] flex flex-col items-center justify-center">
+                <p class="text-sm font-semibold text-rose-200 mb-5 font-kufi">
+                    هل تقبلين اعتذاري وسماحي يا أجمل أميرة؟ 🌹
+                </p>
+
+                <div class="flex flex-wrap justify-center items-center gap-4 w-full">
+                    <button id="btn-yes" class="bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-bold py-3.5 px-8 rounded-full shadow-lg shadow-rose-600/40 hover:shadow-rose-600/60 transform hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base font-kufi transition-all flex items-center gap-2 border border-rose-300/30">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>سامحتك يا روحي</span>
+                    </button>
+
+                    <button id="btn-no" class="bg-white/10 hover:bg-white/20 text-rose-200 font-semibold py-3.5 px-8 rounded-full border border-white/15 text-sm md:text-base font-kufi transition-all">
+                        <span>لا، أفكر بالأمر 😉</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Celebration Screen -->
+            <div id="celebration-box" class="hidden mt-6 p-6 rounded-2xl bg-gradient-to-r from-rose-950/70 to-purple-950/70 border border-rose-500/40 text-center animate-fade-in shadow-xl">
+                <div class="text-4xl md:text-5xl mb-3 animate-bounce">💖 🎉 🌸</div>
+                <h3 class="text-2xl md:text-3xl font-extrabold font-kufi text-rose-200 mb-2">
+                    شكراً لكِ يا أميرتي الحلوة!
+                </h3>
+                <p class="text-rose-100 font-serif-custom text-lg md:text-xl leading-relaxed">
+                    وعد مني أن أحافظ على ابتسامتكِ دائماً وأن أكون لكِ السند والأمان!
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <div id="playlist-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card rounded-3xl p-6 max-w-md w-full relative border border-rose-500/30 shadow-2xl">
+            <button id="close-playlist-modal" class="absolute top-4 left-4 text-rose-300 hover:text-white w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <h3 class="text-lg font-bold font-kufi text-rose-200 mb-4 text-center flex items-center justify-center gap-2">
+                <i class="fa-solid fa-compact-disc text-pink-400"></i> مكتبة الأغاني والموسيقى
+            </h3>
+
+            <!-- Built-in Track Selection -->
+            <div class="space-y-3 mb-5 max-h-48 overflow-y-auto pr-1">
+                <label class="block text-xs font-semibold text-rose-200 mb-1">اختر أغنية جاهزة:</label>
+                
+                <div class="track-option p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-rose-500/20 cursor-pointer flex items-center justify-between transition-colors" data-src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112189.mp3" data-name="عزف بيانو رومانسي هادئ">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-music text-rose-400 text-xs"></i>
+                        <span class="text-xs text-rose-100 font-medium">عزف بيانو رومانسي هادئ</span>
+                    </div>
+                    <i class="fa-solid fa-circle-play text-rose-400 text-sm"></i>
+                </div>
+
+                <div class="track-option p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-rose-500/20 cursor-pointer flex items-center justify-between transition-colors" data-src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a7322d.mp3?filename=romantic-love-song-10586.mp3" data-name="لحن الحب والوفاء">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-music text-rose-400 text-xs"></i>
+                        <span class="text-xs text-rose-100 font-medium">لحن الحب والوفاء</span>
+                    </div>
+                    <i class="fa-solid fa-circle-play text-rose-400 text-sm"></i>
+                </div>
+
+                <div class="track-option p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-rose-500/20 cursor-pointer flex items-center justify-between transition-colors" data-src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=sweet-love-13532.mp3" data-name="موسيقى حالمة">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-music text-rose-400 text-xs"></i>
+                        <span class="text-xs text-rose-100 font-medium">موسيقى حالمة</span>
+                    </div>
+                    <i class="fa-solid fa-circle-play text-rose-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Upload Custom Song -->
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <label class="block text-xs font-semibold text-rose-200 mb-2">أو ارفع أغنيتك المفضلة من جهازك مباشرة (MP3):</label>
+                <input type="file" id="audio-file-input" accept="audio/*" class="block w-full text-xs text-rose-300 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-rose-600 file:text-white hover:file:bg-rose-500 cursor-pointer">
+            </div>
+
+            <div id="modal-status" class="text-xs text-emerald-400 text-center font-medium mt-3 hidden">
+                ✨ تم تشغيل الأغنية بنجاح!
+            </div>
+        </div>
+    </div>
+
+    <div id="floating-player" class="fixed bottom-4 inset-x-4 max-w-xl mx-auto glass-card rounded-2xl p-3 z-40 border border-rose-500/30 flex flex-col gap-2 shadow-2xl">
+        <div class="flex items-center justify-between gap-3">
+            
+            <div class="flex items-center gap-3 overflow-hidden">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center text-white shrink-0 shadow-md">
+                    <i id="disc-icon" class="fa-solid fa-compact-disc text-lg"></i>
+                </div>
+                <div class="overflow-hidden">
+                    <h4 id="player-track-name" class="text-xs font-bold text-rose-100 truncate">عزف بيانو رومانسي هادئ</h4>
+                    <span id="player-time-display" class="text-[10px] text-rose-300/70 font-mono">00:00 / 00:00</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white/5">
+                    <i id="volume-icon" class="fa-solid fa-volume-high text-xs text-rose-300"></i>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8" class="w-16 h-1 cursor-pointer">
+                </div>
+
+                <button id="player-play-btn" class="w-10 h-10 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white rounded-xl flex items-center justify-center shadow-lg shadow-rose-600/30 transition-transform active:scale-90">
+                    <i id="player-play-icon" class="fa-solid fa-play text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="w-full flex items-center gap-2 px-1">
+            <input type="range" id="audio-progress" min="0" max="100" value="0" class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer">
+        </div>
+    </div>
+
+    <!-- Hidden HTML5 Audio Component -->
+    <audio id="main-audio" loop preload="auto">
+        <source id="audio-source" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112189.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Background Canvas Particles Logic
+            const canvas = document.getElementById('canvas-particles');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + Math.random() * 100;
+                    this.size = Math.random() * 12 + 6;
+                    this.speedY = Math.random() * 1.2 + 0.5;
+                    this.speedX = Math.sin(Math.random() * Math.PI) * 0.8;
+                    this.opacity = Math.random() * 0.6 + 0.2;
+                    this.char = ['❤️', '✨', '💖', '🌸'][Math.floor(Math.random() * 4)];
+                }
+
+                update() {
+                    this.y -= this.speedY;
+                    this.x += this.speedX;
+                    if (this.y < -20) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.globalAlpha = this.opacity;
+                    ctx.font = `${this.size}px sans-serif`;
+                    ctx.fillText(this.char, this.x, this.y);
+                }
+            }
+
+            for (let i = 0; i < 35; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            // Audio Player Control Logic
+            const mainAudio = document.getElementById('main-audio');
+            const playerPlayBtn = document.getElementById('player-play-btn');
+            const playerPlayIcon = document.getElementById('player-play-icon');
+            const discIcon = document.getElementById('disc-icon');
+            const audioProgress = document.getElementById('audio-progress');
+            const playerTimeDisplay = document.getElementById('player-time-display');
+            const volumeSlider = document.getElementById('volume-slider');
+            const volumeIcon = document.getElementById('volume-icon');
+            const playerTrackName = document.getElementById('player-track-name');
+
+            let isPlaying = false;
+
+            function toggleAudioPlay() {
+                if (isPlaying) {
+                    mainAudio.pause();
+                    setPlayState(false);
+                } else {
+                    mainAudio.play().then(() => {
+                        setPlayState(true);
+                    }).catch(() => {});
+                }
+            }
+
+            function setPlayState(playing) {
+                isPlaying = playing;
+                if (playing) {
+                    playerPlayIcon.className = 'fa-solid fa-pause text-xs';
+                    discIcon.classList.add('animate-spin');
+                } else {
+                    playerPlayIcon.className = 'fa-solid fa-play text-xs';
+                    discIcon.classList.remove('animate-spin');
+                }
+            }
+
+            playerPlayBtn.addEventListener('click', toggleAudioPlay);
+
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return '00:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            mainAudio.addEventListener('timeupdate', () => {
+                if (mainAudio.duration) {
+                    const pct = (mainAudio.currentTime / mainAudio.duration) * 100;
+                    audioProgress.value = pct;
+                    playerTimeDisplay.innerText = `${formatTime(mainAudio.currentTime)} / ${formatTime(mainAudio.duration)}`;
+                }
+            });
+
+            audioProgress.addEventListener('input', (e) => {
+                if (mainAudio.duration) {
+                    mainAudio.currentTime = (e.target.value / 100) * mainAudio.duration;
+                }
+            });
+
+            volumeSlider.addEventListener('input', (e) => {
+                mainAudio.volume = e.target.value;
+                if (e.target.value == 0) {
+                    volumeIcon.className = 'fa-solid fa-volume-xmark text-xs text-rose-300';
+                } else {
+                    volumeIcon.className = 'fa-solid fa-volume-high text-xs text-rose-300';
+                }
+            });
+
+            // Playlist Modal and Custom Upload Logic
+            const btnPlaylistModal = document.getElementById('btn-playlist-modal');
+            const closePlaylistModal = document.getElementById('close-playlist-modal');
+            const playlistModal = document.getElementById('playlist-modal');
+            const audioFileInput = document.getElementById('audio-file-input');
+            const trackOptions = document.querySelectorAll('.track-option');
+            const modalStatus = document.getElementById('modal-status');
+
+            btnPlaylistModal.addEventListener('click', () => playlistModal.classList.remove('hidden'));
+            closePlaylistModal.addEventListener('click', () => playlistModal.classList.add('hidden'));
+
+            trackOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const src = option.getAttribute('data-src');
+                    const name = option.getAttribute('data-name');
+                    mainAudio.src = src;
+                    playerTrackName.innerText = name;
+                    showModalSuccess();
+                });
+            });
+
+            audioFileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    mainAudio.src = URL.createObjectURL(file);
+                    playerTrackName.innerText = file.name.replace(/\.[^/.]+$/, "");
+                    showModalSuccess();
+                }
+            });
+
+            function showModalSuccess() {
+                modalStatus.classList.remove('hidden');
+                mainAudio.play().then(() => setPlayState(true)).catch(() => {});
+                setTimeout(() => {
+                    playlistModal.classList.add('hidden');
+                    modalStatus.classList.add('hidden');
+                }, 1200);
+            }
+
+            // Envelope and Typewriter Sequence
+            const envelopeWrapper = document.getElementById('envelope-wrapper');
+            const envelope = document.getElementById('envelope');
+            const letterCard = document.getElementById('letter-card');
+            const typewriterText = document.getElementById('typewriter-text');
+            const subMessage = document.getElementById('sub-message');
+
+            const fullText = "أحبكِ يا روحي، وأتمنى أن تسامحيني 💖";
+            let charIndex = 0;
+
+            function startTypewriter() {
+                typewriterText.classList.add('typing-cursor');
+                function type() {
+                    if (charIndex < fullText.length) {
+                        typewriterText.innerHTML += fullText.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, 85);
+                    } else {
+                        typewriterText.classList.remove('typing-cursor');
+                        subMessage.classList.remove('opacity-0');
+                    }
+                }
+                type();
+            }
+
+            envelopeWrapper.addEventListener('click', () => {
+                envelope.classList.add('open');
+
+                if (!isPlaying) {
+                    mainAudio.play().then(() => setPlayState(true)).catch(() => {});
+                }
+
+                setTimeout(() => {
+                    envelopeWrapper.style.transition = 'all 0.6s ease';
+                    envelopeWrapper.style.opacity = '0';
+                    envelopeWrapper.style.transform = 'scale(0.8)';
+
+                    setTimeout(() => {
+                        envelopeWrapper.classList.add('hidden');
+                        letterCard.classList.remove('hidden');
+
+                        setTimeout(() => {
+                            letterCard.classList.remove('scale-95', 'opacity-0');
+                            letterCard.classList.add('scale-100', 'opacity-100');
+                            startTypewriter();
+                        }, 50);
+
+                    }, 500);
+
+                }, 700);
+            });
+
+            // Dodging No Button Logic
+            const btnNo = document.getElementById('btn-no');
+            const btnYes = document.getElementById('btn-yes');
+            const actionButtons = document.getElementById('action-buttons');
+            const celebrationBox = document.getElementById('celebration-box');
+
+            let dodgeCount = 0;
+            const noTexts = [
+                "لا، أفكر بالأمر 😉",
+                "متأكدة؟ 🥺",
+                "سامحيني هالمرة! 💖",
+                "ما أقدر على زعلِك! 🌹",
+                "يلا سامحي! 🥰"
+            ];
+
+            btnNo.addEventListener('mouseenter', dodgeButton);
+            btnNo.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                dodgeButton();
+            });
+
+            function dodgeButton() {
+                dodgeCount++;
+                if (dodgeCount < noTexts.length) {
+                    btnNo.querySelector('span').innerText = noTexts[dodgeCount];
+                }
+                
+                const x = (Math.random() - 0.5) * 200;
+                const y = (Math.random() - 0.5) * 100;
+                btnNo.style.transform = `translate(${x}px, ${y}px)`;
+            }
+
+            // Yes / Acceptance Action
+            btnYes.addEventListener('click', () => {
+                actionButtons.style.display = 'none';
+                celebrationBox.classList.remove('hidden');
+
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 80,
+                        origin: { y: 0.6 },
+                        colors: ['#f43f5e', '#ec4899', '#a855f7', '#fbbf24']
+                    });
+
+                    let end = Date.now() + (3 * 1000);
+                    let interval = setInterval(function() {
+                        if (Date.now() > end) {
+                            return clearInterval(interval);
+                        }
+                        confetti({
+                            startVelocity: 30,
+                            spread: 360,
+                            ticks: 60,
+                            origin: { x: Math.random(), y: Math.random() - 0.2 }
+                        });
+                    }, 200);
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
